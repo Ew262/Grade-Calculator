@@ -8,13 +8,15 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <limits>
 
 using namespace std;
 
 int main()
 {
 	string lastName;
-	int stuScore;
+	int stuScore = 0;
 	int totPoints = 0;
 	int gradeCounter;
 	float grade;
@@ -24,16 +26,17 @@ int main()
 	cin >> lastName;
 	for (gradeCounter = 0; gradeCounter < 3; gradeCounter++)
 	{
-		cout << "Enter grade " << gradeCounter + 1 << " : ";
+		cout << "Enter grade " << gradeCounter + 1 << ": ";
 		cin >> stuScore;
-		//Incase guess is not acceptable
-		/*if(stuScore(!>=0 && !<=100))
+		if((stuScore < 0)  || (stuScore > 100) || (!cin))
 		{
+			cout << "That input was not accepted, please enter a number between 0 and 100" << endl;
+			cout << "Enter grade " << gradeCounter + 1 << ": ";
 			cin.clear();
-			cin.ignore(100, '\n');
-			cout << "That input was not accepted, please enter a number" << endl;
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			stuScore = 0;
 			cin >> stuScore;
-		}*/
+		}
 		totPoints += stuScore;
 		
 	}
