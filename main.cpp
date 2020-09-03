@@ -31,14 +31,15 @@ int main()
 		if((stuScore < 0)  || (stuScore > 100) || (!cin))
 		{
 			cout << "That input was not accepted, please enter a number between 0 and 100" << endl;
-			cout << "Enter grade " << gradeCounter + 1 << ": ";
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			stuScore = 0;
-			cin >> stuScore;
+			gradeCounter--;
 		}
+		else
+		{
 		totPoints += stuScore;
-		
+		}
 	}
 	
 	grade = static_cast<float>(totPoints) / gradeCounter;
