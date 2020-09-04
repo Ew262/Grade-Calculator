@@ -10,10 +10,10 @@
 //	gives feedback such as "Excellent!" or "Failed" etc
 
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <limits>
+#include <iostream>		// std::cout
+#include <string>		// in case we
+#include <cstdlib>		//
+#include <limits>       // std::numeric_limits
 
 using namespace std;
 
@@ -33,24 +33,28 @@ int main()
 	for (gradeCounter = 0; gradeCounter < 3; gradeCounter++)
 	{
 		cout << "Enter grade " << gradeCounter + 1 << ": ";	//	prints instructions for user
-		cin >> stuScore;									//	reads in user input for grade
-		if((stuScore < 0)  || (stuScore > 100) || (!cin))	//	checks input to ensure all input are numerical and in the proper range
+		cin >> stuScore;
+		//	reads in user input for grade
+		if((stuScore < 0)  || (stuScore > 100) || (!cin)  /*|| */)	//	checks input to ensure all input are numerical and in the proper range
 		{
-			cout << "That input was not accepted, please enter a number between 0 and 100" << endl;
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			stuScore = 0;
-			gradeCounter--;
+			cout << "That input was not accepted, please enter a number between 0 and 100" << endl;	//	prints corrective instructions for user
+			cin.clear();											//	clears the error flag on cin (so that future I/O operations will work correctly)
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');	//	extracts and discards the rest of the current line
+			stuScore = 0;											//	removes the erroneous entry
+			gradeCounter--;											//	decrements counter for loop to repeat current grade entry
 		}
+		//	once the individual score input is verified, it is added to the total points for the grade calculation
 		else
 		{
 		totPoints += stuScore;
 		}
 	}
-//	calculates grade percentage, casts int's into a grade
+	//	calculates grade percentage, casts int's into a grade
 	grade = static_cast<float>(totPoints) / gradeCounter;
-	
+	//	Calculates a rounded average score by adding and then truncating the decimal portion, then prints
 	cout << "Average: " << static_cast<int>(grade+0.5) << "%, ";
+	
+	//	Determines grade percentage range and prints corresponding message 
 	if (grade > 90)
 	{
 		message = "Excellent";
